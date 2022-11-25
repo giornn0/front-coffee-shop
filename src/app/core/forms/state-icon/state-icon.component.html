@@ -1,0 +1,15 @@
+<mat-icon [ngClass]="
+    control?.invalid && control?.touched
+      ? 'text-red-400'
+      : control?.valid
+      ? 'text-green-400'
+      : 'text-blue-400'
+  " class="pr-8">
+  {{
+  control?.invalid && control?.touched
+  ? "sentiment_very_dissatisfied"
+  : control?.valid
+  ? "sentiment_very_satisfied"
+  : "sentiment_satisfied"
+  }}
+</mat-icon>

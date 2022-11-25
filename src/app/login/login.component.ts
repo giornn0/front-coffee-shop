@@ -1,14 +1,33 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, Validators } from '@angular/forms';
+import { Form } from '../core/forms/form';
+import { LoggedService } from '../core/services/logged.service';
+import { LoginForm } from './login.model';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
-  form = new FormGroup({
-    username: new FormControl(),
-    password: new FormControl(),
-  });
+export class LoginComponent extends Form<LoginForm> {
+  override keys: (keyof LoginForm)[] = ['username', 'password'];
+  constructor(private loginService: LoggedService) {
+    super();
+  }
+
+  get username(): AbstractControl | null {
+    return this.getControl('username');
+  }
+  get password(): AbstractControl | null {
+    return this.getControl('password');
+  }
+  override ngOnInit(): void {
+    this.startBasicForm();
+    this.username?.addValidators([Validators.required]);
+    this.password?.addValidators([Validators.required]);
+  }
+
+  submit() {
+    this.loginService.login(this.form.value).subscribe();
+  }
 }

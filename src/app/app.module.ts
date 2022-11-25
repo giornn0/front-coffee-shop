@@ -9,6 +9,7 @@ import { LayoutModule } from './layout/layout.module';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { materialForms } from './constants/material';
+import { StateIconComponent } from './core/forms/state-icon/state-icon.component';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
@@ -20,6 +21,7 @@ import { materialForms } from './constants/material';
     ReactiveFormsModule,
     LayoutModule,
     ...materialForms,
+    StateIconComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
