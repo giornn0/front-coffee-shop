@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class IsLoggedGuard implements CanActivate {
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -22,7 +22,12 @@ export class IsLoggedGuard implements CanActivate {
     | boolean
     | UrlTree {
     const hasToken = !!localStorage.getItem('token');
-    const isLogin = route.url[0].path === 'login';
+    const url = route.url;
+    if (!url.length) {
+      this.router.navigate(['home']);
+      return false;
+    }
+    const isLogin = url[0].path === 'login';
     if (!hasToken && !isLogin) {
       this.router.navigate(['login']);
       return false;

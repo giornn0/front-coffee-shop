@@ -1,4 +1,7 @@
-<div class="h-screen flex content-center justify-center" style="background-image: url('assets/icon.jpeg')">
+<div
+  class="h-screen flex content-center justify-center"
+  style="background-image: url('assets/icon.jpeg')"
+>
   <mat-card class="w-1/3 h-fit py-2 self-center">
     <mat-card-header class="w-full flex justify-center">
       <h1 class="font-semibold text-slate-300 hover:text-slate-600">Coffee</h1>
@@ -8,17 +11,33 @@
     <mat-card-content>
       <form [formGroup]="form" (ngSubmit)="submit()">
         <mat-form-field class="w-full p-0 m-0 my-2" appearance="outline">
-          <mat-label [ngClass]="{ 'text-green-400': username?.valid }">Usuario</mat-label>
-          <input (keyup.enter)="form.valid ? submit() : null" formControlName="username" matInput
-            placeholder="Email o nombre de usuario" />
-          <state-icon matSuffix [control]="username"> </state-icon>
-          <mat-error *ngIf="username?.touched && username?.invalid">
-            Por favor, ingrese su usuario
+          <mat-label [ngClass]="{ 'text-green-400': email?.valid }"
+            >Usuario</mat-label
+          >
+          <input
+            (keyup.enter)="form.valid ? submit() : null"
+            formControlName="email"
+            matInput
+            placeholder="Email o nombre de usuario"
+          />
+          <state-icon matSuffix [control]="email"> </state-icon>
+          <mat-error *ngIf="email?.touched && email?.hasError('email')">
+            Por favor, ingrese un mail válido
+          </mat-error>
+          <mat-error *ngIf="email?.touched && email?.hasError('required')">
+            Por favor, ingrese su email
           </mat-error>
         </mat-form-field>
         <mat-form-field class="w-full p-0 m-0 my-2" appearance="outline">
-          <mat-label [ngClass]="{ 'text-green-400': password?.valid }">Contraseña</mat-label>
-          <input (keyup.enter)="form.valid ? submit() : null" formControlName="password" type="password" matInput />
+          <mat-label [ngClass]="{ 'text-green-400': password?.valid }"
+            >Contraseña</mat-label
+          >
+          <input
+            (keyup.enter)="form.valid ? submit() : null"
+            formControlName="password"
+            type="password"
+            matInput
+          />
           <state-icon matSuffix [control]="password"> </state-icon>
           <mat-error *ngIf="password?.touched && password?.invalid">
             Por favor, ingrese su contraseña
@@ -27,8 +46,11 @@
       </form>
     </mat-card-content>
     <mat-card-actions>
-      <button type="submit" (click)="submit()"
-        class="w-full p-2 bg-blue-400 rounded-md flex content-center justify-center">
+      <button
+        type="submit"
+        (click)="submit()"
+        class="w-full p-2 bg-blue-400 rounded-md flex content-center justify-center"
+      >
         <mat-icon>login </mat-icon>
         <span>Ingresar</span>
       </button>
