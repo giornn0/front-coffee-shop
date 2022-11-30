@@ -6,14 +6,23 @@ import { LoginComponent } from './login/login.component';
 import { PagesRoutes } from './routes';
 
 const routes: Routes = [
-  { path: 'home', component: IndexComponent, canActivate: [IsLoggedGuard] },
   { path: 'login', component: LoginComponent, canActivate: [IsLoggedGuard] },
-  { path: '', children: PagesRoutes, canActivate: [IsLoggedGuard] },
-  { path: '**', redirectTo: 'home' },
+  {
+    path: '',
+    component: IndexComponent,
+    canActivate: [IsLoggedGuard],
+  },
+  {
+    path: '',
+    canActivate: [IsLoggedGuard],
+    children: PagesRoutes,
+  },
+  // { path: '', children: pagesRoutes, canActivate: [IsLoggedGuard] },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -23,17 +23,17 @@ export class IsLoggedGuard implements CanActivate {
     | UrlTree {
     const hasToken = !!localStorage.getItem('token');
     const url = route.url;
-    if (!url.length) {
-      this.router.navigate(['home']);
-      return false;
-    }
-    const isLogin = url[0].path === 'login';
+    // if (!url.length) {
+    //   this.router.navigate(['']);
+    //   return false;
+    // }
+    const isLogin = url[0] && url[0].path === 'login';
     if (!hasToken && !isLogin) {
       this.router.navigate(['login']);
       return false;
     }
     if (hasToken && isLogin) {
-      this.router.navigate(['home']);
+      this.router.navigate(['']);
       return false;
     }
     return true;

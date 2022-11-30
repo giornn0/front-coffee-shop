@@ -1,1 +1,49 @@
-<p>day-sales works!</p>
+<div class="w-full grid grid-cols-1">
+  <div class="w-full">
+    <mat-form-field class="w-4/6 lg:w-3/6 p-0 m-2 ml-0" appearance="outline" *ngIf="showProducts">
+      <mat-label>Filtrar productos</mat-label>
+      <input [formControl]="filter" matInput />
+    </mat-form-field>
+    <button type="button" class="p-2 rounded-md box-border shadow-lg hover:shadow-2xl" [ngClass]="
+        showProducts
+          ? 'bg-red-400 hover:bg-red-500'
+          : 'bg-blue-400 hover:bg-blue-500'
+      " (click)="toggleProdList()">
+      {{ showProducts ? "Ocultar" : "Ver" }}
+    </button>
+  </div>
+  <mat-accordion *ngIf="showProducts">
+    <div class="grid lg:grid-cols-6 md:grid-cols-4 gap-4">
+      <div class="col-span-2" *ngFor="let product of productsForSaleFiltered | async">
+        <app-product-charger [product]="product" (charged)="addProduct($event)" (removed)="removeProduct(product.id)">
+        </app-product-charger>
+        <div></div>
+      </div>
+    </div>
+  </mat-accordion>
+
+  <form class="w-full grid grid-cols-2 gap-2 my-4" [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Filtrar productos</mat-label>
+      <mat-select formControlName="payment_method">
+        <mat-option *ngFor="let payment of paymentMethods" [value]="payment.value">
+          {{ payment.label }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha venta</mat-label>
+      <input matInput formControlName="date" [matDatepicker]="picker" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancelar</button>
+          <button mat-raised-button color="primary" matDatepickerApply>
+            Aplicar
+          </button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+    </mat-form-field>
+  </form>
+  {{ form.getRawValue() | json }}
+</div>

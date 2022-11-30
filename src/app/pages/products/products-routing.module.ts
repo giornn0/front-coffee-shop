@@ -4,7 +4,7 @@ import { ProductResolver } from './products.resolver';
 import { FormComponent } from './views/form/form.component';
 import { ListComponent } from './views/list/list.component';
 
-const routes: Routes = [
+export const ProductRoutes: Routes = [
   {
     path: 'lista',
     component: ListComponent,
@@ -23,7 +23,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(ProductRoutes)],
   exports: [RouterModule],
 })
 export class ProductsRoutingModule {}

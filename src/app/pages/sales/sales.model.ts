@@ -2,9 +2,11 @@ import { PaymentMethod } from 'src/app/constants/enums';
 
 export interface Sale {
   id: string;
-  total: number;
+  amount: number;
   date: Date;
+  pedidos_ya: boolean;
   payment_method: PaymentMethod;
+  balance_id?: string;
 }
 
 export interface NewSale extends Sale {

@@ -31,7 +31,7 @@ export class LoginComponent extends Form<LoginForm> {
   submit() {
     this.loginService.login(this.form.value).subscribe({
       next: (_) => {
-        this.router.navigate(['home']);
+        this.router.navigate(['']);
       },
     });
   }

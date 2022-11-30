@@ -6,10 +6,7 @@ import { ListComponent } from './views/list/list.component';
 import { FormComponent } from './views/form/form.component';
 
 @NgModule({
-  declarations: [
-    ListComponent,
-    FormComponent
-  ],
+  declarations: [ListComponent, FormComponent],
   imports: [CommonModule, ProductsRoutingModule],
 })
 export class ProductsModule {}

@@ -1,0 +1,43 @@
+<mat-expansion-panel class="w-full" hideToggle #panel [disabled]="!form" (opened)="openPanel = true"
+  (closed)="openPanel = false">
+  <mat-expansion-panel-header class="px-1 pr-0">
+    <mat-panel-title>
+      <span class="text-gray-400 font-bold">{{ product?.code }}</span>
+      &nbsp;
+      <span class="text-black font-normal">
+        {{ product?.name }}
+      </span>
+    </mat-panel-title>
+    <mat-panel-description class="flex justify-end">
+      <span class="text-green-400" *ngIf="!hasQuantity || openPanel">{{ product?.price | currency: "$" }}
+      </span>
+      <span class="text-black font-bold" *ngIf="!openPanel && hasQuantity">{{
+        subTotal | currency: "$"
+        }}</span>
+      <button (click)="choiceUpdate()" type="button" class="p-2">
+        <i class="material-icons rounded-full p-1" [ngClass]="form ? 'bg-red-400' : 'bg-blue-400'">
+          {{ form ? "delete" : "add_circle_outline" }}</i>
+      </button>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <ng-container *ngIf="form">
+    <form [formGroup]="form">
+      <div class="grid grid-cols-3">
+        <div class="flex justify-center">
+          <i (click)="updateQuantity(-1)"
+            class="material-icons cursor-pointer rounded-full bg-red-400 p-1">exposure_minus_1</i>
+        </div>
+        <input class="text-center" formControlName="quantity" />
+        <div class="flex justify-center">
+          <i (click)="updateQuantity(1)"
+            class="material-icons cursor-pointer rounded-full bg-blue-400 p-1">exposure_plus_1</i>
+        </div>
+      </div>
+    </form>
+    <div class="w-full text-center mt-1">
+      <span class="font-bold text-black">
+        {{ subTotal | currency: "$" }}
+      </span>
+    </div>
+  </ng-container>
+</mat-expansion-panel>

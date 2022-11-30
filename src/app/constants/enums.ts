@@ -11,7 +11,13 @@ export enum PaymentMethod {
   CreditCard = 'credit_card',
   MercadoPago = 'mercado_pago',
 }
+
 export enum CoffeeType {
   Latte = 'latte',
   Black = 'black',
+}
+
+export enum ExpenseOption {
+  PROVIDER = 'provider',
+  DAILY = 'daily',
 }

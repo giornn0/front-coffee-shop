@@ -25,11 +25,11 @@ export class OdinService<T> {
     return this.http.get<ApiResponse<T>>(this.baseUrl, { params: pager });
   }
 
-  createOne<F>(form: F): Observable<ToCheck<T>> {
+  createOne<F>(form: F | T): Observable<ToCheck<T>> {
     return this.http.post<ApiResponse<T>>(this.baseUrl, form);
   }
 
-  updateOne<F>(form: F, id: string | number): Observable<ToCheck<T>> {
+  updateOne<F>(form: F | T, id: string | number): Observable<ToCheck<T>> {
     return this.http.put<ApiResponse<T>>(`${this.baseUrl}/${id}`, form);
   }
 }

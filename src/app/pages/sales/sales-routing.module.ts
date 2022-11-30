@@ -4,7 +4,7 @@ import { ForSaleResolver } from '../products/products.resolver';
 import { DaySalesComponent } from './views/day-sales/day-sales.component';
 import { ListComponent } from './views/list/list.component';
 
-const routes: Routes = [
+export const SalesRoutes: Routes = [
   {
     path: 'caja-dia',
     resolve: {
@@ -19,7 +19,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(SalesRoutes)],
   exports: [RouterModule],
 })
 export class SalesRoutingModule {}

@@ -55,3 +55,7 @@ body {
 @tailwind utilities;
 
 @import "./styles/custom.scss";
+
+.test {
+  @apply bg-red-400;
+}
