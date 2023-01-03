@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class IsLoggedGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

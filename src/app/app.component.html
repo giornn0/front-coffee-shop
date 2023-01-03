@@ -1,7 +1,7 @@
 <div class="w-screen" *ngIf="logged | async; else notLogged">
   <app-header></app-header>
   <div class="flex w-screen">
-    <div class="h-fit flex-none">
+    <div class="h-fit flex-none" *ngIf="sidenav | async">
       <app-sidenav></app-sidenav>
     </div>
     <div class="flex-grow">

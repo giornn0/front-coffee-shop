@@ -1,0 +1,36 @@
+<ng-container *ngIf="sidenav">
+  <a class="w-full" *ngIf="
+      sidenav.path;
+      else withChilds
+    " [routerLink]="sidenav.path" (click)="
+      layoutService.setActiveSidenav(
+        sidenav.path
+      )
+    ">
+    <li class="px-4 pb-2 cursor-pointer w-fit" [ngClass]="{
+        'bg-slate-700 text-yellow-100':
+          isActive | async
+      }">
+      <mat-icon class="pr-8" *ngIf="sidenav.icon">
+        {{ sidenav.icon }}
+      </mat-icon>
+      {{ sidenav.label }}
+    </li>
+  </a>
+  <ng-template #withChilds>
+    <li class="px-4 pb-2 cursor-pointer w-fit">
+      <mat-icon class="pr-8" *ngIf="sidenav.icon" (click)="toggleChildren()">
+        {{ sidenav.icon }}
+      </mat-icon>
+      <span (click)="toggleChildren()">{{ sidenav.label }}
+      </span>
+      <ng-container *ngIf="isOpen">
+        <ul class="flex flex-col">
+          <side-item *ngFor="
+              let children of sidenav.children
+            " [sidenav]="children"></side-item>
+        </ul>
+      </ng-container>
+    </li>
+  </ng-template>
+</ng-container>

@@ -4,6 +4,9 @@ import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { FooterComponent } from './footer/footer.component';
 import { IndexComponent } from './index/index.component';
+import { SideItemComponent } from './sidenav/side-item.component';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -11,8 +14,17 @@ import { IndexComponent } from './index/index.component';
     SidenavComponent,
     FooterComponent,
     IndexComponent,
+    SideItemComponent,
   ],
-  imports: [CommonModule],
-  exports: [HeaderComponent, SidenavComponent, FooterComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatIconModule,
+  ],
+  exports: [
+    HeaderComponent,
+    SidenavComponent,
+    FooterComponent,
+  ],
 })
-export class LayoutModule {}
+export class LayoutModule { }
