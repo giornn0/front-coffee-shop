@@ -1,3 +1,4 @@
+import { RouteEnum } from './constants/enums';
 import { Sidenavs } from './layout/sidenav/sidenav.component';
 
 export const sidenavs: Sidenavs = [
@@ -7,11 +8,25 @@ export const sidenavs: Sidenavs = [
     children: [
       {
         label: 'Listado',
-        path: 'productos/lista',
+        path: `${RouteEnum.ProductsFront}/lista`,
       },
       {
         label: 'Agregar',
-        path: 'productos/crear',
+        path: `${RouteEnum.ProductsFront}/crear`,
+      },
+    ],
+  },
+  {
+    label: 'Ventas',
+    icon: '',
+    children: [
+      {
+        label: 'Listado',
+        path: `${RouteEnum.SalesFront}/lista`,
+      },
+      {
+        label: 'Cargar Venta',
+        path: `${RouteEnum.SalesFront}/caja-dia`,
       },
     ],
   },

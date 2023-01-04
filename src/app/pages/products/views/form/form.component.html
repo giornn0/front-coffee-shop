@@ -1,1 +1,32 @@
-<p>form works!</p>
+<form class="w-full grid grid-cols-2 gap-2 my-4" [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Nombre</mat-label>
+    <input formControlName="name" matInput />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Precio</mat-label>
+    <input formControlName="price" matInput />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Código</mat-label>
+    <input formControlName="code" matInput />
+  </mat-form-field>
+  <div>
+    <mat-checkbox formControlName="is_coffee">Es cafe?</mat-checkbox>
+  </div>
+  <mat-form-field appearance="outline" *ngIf="is_coffee?.value">
+    <mat-label>Tipo de cafe</mat-label>
+    <mat-select formControlName="coffe_type">
+      <mat-option [value]="null">Seleccione tipo de
+        cafe</mat-option>
+      <mat-option *ngFor="
+          let coffeType of coffeTypes
+        " [value]="coffeType.value">
+        {{ coffeType.label }}
+      </mat-option>
+    </mat-select>
+    <input formControlName="coffe_type" matInput />
+  </mat-form-field>
+</form>
+{{ form.value | json }}
